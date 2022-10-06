@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MovieLib</string>
+    <string name="appsname">MovieLab</string>
+    <string name="appUploads">Идёт загрузка</string>
+    <string name="movieTops">Подборка</string>
+    <string name="genres">Жанр</string>
+    <string name="Fav">Избранное</string>
+    <string name="Action">Действие</string>
+    <string name="Adventure">Преключения</string>
+    <string name="Drama">Драмма</string>
+    <string name="clearFavor">Отчистить</string>
+    <string name="Fantasy">Фантастика</string>
+    <string name="genresDescript">На основе жанра строится подборка</string>
+</resources>
