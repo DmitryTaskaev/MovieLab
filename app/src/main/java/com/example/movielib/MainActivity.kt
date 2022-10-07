@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private  lateinit var time: Handler
     private  var url: URL? = null
 
+    private var genr: String? = null
     private val APP = "prefs"
     private lateinit var prefs: SharedPreferences
 
@@ -36,11 +37,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var db: MovieLabDB = Room.databaseBuilder(this, MovieLabDB::class.java, DATABASE_NAME).build()
+        val MovieDao = db.MovieDAO()
+        val exec = Executors.newSingleThreadExecutor()
+        exec.execute {
+            if(MovieDao.getProfileCount() == 0){
+                genr = "Adventure"
+            }
+            else {
+                genr = MovieDao.getNameGenr(MovieDao.getGenr())
+                Log.d("Response", genr.toString())
+            }
+        }
+
+
         prefs = getSharedPreferences(APP, Context.MODE_PRIVATE)
         MovieList = mutableListOf()
         MovieTop = mutableListOf()
 
-        val exec = Executors.newSingleThreadExecutor()
+
         exec.execute{
             getTop()
         }
@@ -65,9 +80,11 @@ class MainActivity : AppCompatActivity() {
         }, 12000)
     }
     fun getTop(){
+
+
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=Fantasy&limit=5")
+            .url("https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=$genr&limit=5")
             .get()
             .addHeader("X-RapidAPI-Key", "b6b22d2376mshac86a84934d0535p19c1f7jsnf3df167ce01e")
             .addHeader("X-RapidAPI-Host", "online-movie-database.p.rapidapi.com")

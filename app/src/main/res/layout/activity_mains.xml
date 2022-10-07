@@ -50,7 +50,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/compilationRV"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="12dp"

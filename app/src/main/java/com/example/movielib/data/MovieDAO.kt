@@ -19,6 +19,9 @@ interface MovieDAO{
     @Query("SELECT COUNT(*) FROM $PROFILE_TABLE")
     fun getProfileCount():Int
 
+    @Query("SELECT genresId FROM $PROFILE_TABLE")
+    fun getGenr(): Int
+
     @Insert
     fun addProfile(profile: profile)
 
@@ -46,6 +49,9 @@ interface MovieDAO{
 
     @Query("SELECT COUNT(*) FROM $GENRE_TABLE")
     fun getCountGenres(): Int
+
+    @Query("SELECT genres_name FROM $GENRE_TABLE WHERE id=:id")
+    fun getNameGenr(id: Int): String
 
     @Insert
     fun addGenres(genres: genres)
