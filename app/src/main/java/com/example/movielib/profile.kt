@@ -97,5 +97,6 @@ class profile : AppCompatActivity() {
         adapter.setClickListener(rvListener)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
+
     }
 }

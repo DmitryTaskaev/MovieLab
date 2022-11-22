@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,7 @@ class FavoritesAdapter(context: Context, val data: MutableList<favorites>) : Rec
         val item = data[position]
         holder.TitleMovie.text = item?.nameMovie
         holder.yearMovie.text = item?.yearMovie
+        holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rv_anim)
         val executor = Executors.newSingleThreadExecutor()
         executor.execute(){
             val imageURL = item?.imgMobie
